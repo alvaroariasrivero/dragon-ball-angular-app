@@ -1,0 +1,7 @@
+<ng-container *ngIf="favorites.length > 0">
+    <div *ngFor="let character of favorites">
+        <h3>{{character.name}}</h3>
+        <img src="{{character.image}}" alt="{{character.name}}">
+        <button (click)="removeFavorite(character)">Eliminar</button>
+    </div>
+</ng-container>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Character } from '../../models/characters-array.model';
 
 @Component({
@@ -11,5 +11,10 @@ import { Character } from '../../models/characters-array.model';
 export class CharacterCardComponent {
   
   @Input() characterData?: Character;
+  @Output() favoriteSelected = new EventEmitter<Character>();
+
+  markAsFavorite() {
+    this.favoriteSelected.emit(this.characterData);
+  }
 
 }

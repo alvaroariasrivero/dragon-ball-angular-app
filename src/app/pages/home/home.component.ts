@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
-import { IAllCharacters } from '../../models/characters-array.model';
+import { IAllCharacters, Character } from '../../models/characters-array.model';
 import { GetCharacterService } from '../../services/get-character.service';
 import { CharacterCardComponent } from "../character-card/character-card.component";
+import { FavoriteCharactersService } from '../../services/favorite-characters.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,12 @@ export class HomeComponent implements OnInit {
   charactersList!: IAllCharacters;
   private currentUrl!: string;
   private _characterApiService = inject(GetCharacterService);
+  
+  constructor(private favoriteService: FavoriteCharactersService) {}
+
+  onFavoriteSelected(character: Character) {
+    this.favoriteService.addFavorite(character);
+  }
 
   ngOnInit(): void {
     this.loadCharacters();
@@ -24,8 +31,6 @@ export class HomeComponent implements OnInit {
   loadCharacters(): void {
     this._characterApiService.getAllCharacters(this.currentUrl).subscribe((data: IAllCharacters) => {
       this.charactersList = data;
-      console.log(this.charactersList);
-      
     })
   }
 

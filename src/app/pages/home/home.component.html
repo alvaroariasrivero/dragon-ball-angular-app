@@ -1,6 +1,9 @@
 <ng-container *ngIf="charactersList?.items && charactersList.items.length > 0">
     <div *ngFor="let character of charactersList.items">
-        <app-character-card [characterData]="character"></app-character-card>
+        <app-character-card 
+        [characterData]="character"
+        (favoriteSelected)="onFavoriteSelected($event)">
+        </app-character-card>
     </div>
 </ng-container>
 <button (click)="prev()">Prev</button>
