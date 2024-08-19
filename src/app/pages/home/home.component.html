@@ -1,0 +1,8 @@
+<ng-container *ngIf="charactersList?.items && charactersList.items.length > 0">
+    <div *ngFor="let character of charactersList.items">
+        <img src="{{character.image}}" alt="{{character.name}}">
+        <p>{{character.name}}</p>
+    </div>
+</ng-container>
+<button (click)="prev()">Prev</button>
+<button (click)="next()">Next</button>
