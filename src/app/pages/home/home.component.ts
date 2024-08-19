@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { IAllCharacters } from '../../models/characters-array.model';
 import { GetCharacterService } from '../../services/get-character.service';
+import { CharacterCardComponent } from "../character-card/character-card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CharacterCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
