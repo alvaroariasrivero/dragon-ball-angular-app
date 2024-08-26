@@ -3,3 +3,11 @@
     <input type="text" formControlName="characterName">
     <button type="submit">Enviar</button>
 </form>
+<ng-container *ngIf="characterList && characterList.length > 0">
+    <div *ngFor="let character of characterList">
+        <app-character-card 
+        [characterData]="character"
+        (favoriteSelected)="onFavoriteSelected($event)">
+        </app-character-card>
+    </div>
+</ng-container>
