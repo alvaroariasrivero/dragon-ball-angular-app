@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     if(this.charactersList.links.next){
       this.currentUrl = this.charactersList.links.next;
       this.loadCharacters();
-      window.scrollTo(0, 0)
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }
 
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     if(this.charactersList.links.previous){
       this.currentUrl = this.charactersList.links.previous;
       this.loadCharacters();
-      window.scrollTo(0, 0)
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }
 
