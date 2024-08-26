@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.css'
 })
@@ -19,7 +20,7 @@ export class SearchFormComponent {
   }
 
   sendData(){
-    console.log(this.characterForm)
+    console.log(this.characterForm.value)
   }
 
 }

@@ -1,1 +1,5 @@
-<p>search-form works!</p>
+<form [formGroup]="characterForm" (ngSubmit)="sendData()">
+    <label for="characterName">Nombre</label>
+    <input type="text" formControlName="characterName">
+    <button type="submit">Enviar</button>
+</form>
