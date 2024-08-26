@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { Character } from '../../models/characters-array.model';
 
 @Component({
@@ -8,12 +8,23 @@ import { Character } from '../../models/characters-array.model';
   templateUrl: './character-card.component.html',
   styleUrl: './character-card.component.css'
 })
-export class CharacterCardComponent {
+export class CharacterCardComponent implements OnInit {
+
+  buttonValue: string = ''
   
   @Input() characterData?: Character;
   @Output() favoriteSelected = new EventEmitter<Character>();
 
-  markAsFavorite() {
+  ngOnInit(): void {
+      if(window.location.pathname === '/favorites'){
+        this.buttonValue = 'Eliminar de favoritos'
+      }else{
+        this.buttonValue = 'Añadir a favoritos'
+      }
+      
+  }
+
+  favoriteButton() {
     this.favoriteSelected.emit(this.characterData);
   }
 

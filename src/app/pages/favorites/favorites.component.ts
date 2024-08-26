@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Character } from '../../models/characters-array.model';
 import { CommonModule } from '@angular/common';
 import { FavoriteCharactersService } from '../../services/favorite-characters.service';
+import { CharacterCardComponent } from '../character-card/character-card.component';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CharacterCardComponent],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.css'
 })
@@ -14,16 +15,16 @@ export class FavoritesComponent implements OnInit {
 
   favorites: Character[] = [];
 
-  constructor(private favoriteCharacterService: FavoriteCharactersService){}
+  constructor(private _favoriteCharacterService: FavoriteCharactersService){}
 
   ngOnInit(): void {
-      this.favoriteCharacterService.favorites$.subscribe(dataFavorites => {
+      this._favoriteCharacterService.favorites$.subscribe(dataFavorites => {
         this.favorites = dataFavorites;
       })
   }
 
   removeFavorite(character: Character): void {
-    this.favoriteCharacterService.removeFavorite(character)
+    this._favoriteCharacterService.removeFavorite(character)
   }
 
 }

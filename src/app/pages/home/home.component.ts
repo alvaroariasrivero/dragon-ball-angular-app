@@ -18,10 +18,10 @@ export class HomeComponent implements OnInit {
   private currentUrl!: string;
   private _characterApiService = inject(GetCharacterService);
   
-  constructor(private favoriteService: FavoriteCharactersService) {}
+  constructor(private _favoriteService: FavoriteCharactersService) {}
 
   onFavoriteSelected(character: Character) {
-    this.favoriteService.addFavorite(character);
+    this._favoriteService.addFavorite(character);
   }
 
   ngOnInit(): void {
