@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IAllCharacters } from '../models/characters-array.model'
+import { IAllCharacters, Character } from '../models/characters-array.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class GetCharacterService {
 
   public getAllCharacters(url?: string): Observable<IAllCharacters>{
     return this._httpClient.get<IAllCharacters>(url || this.baseUrl);
+  }
+
+  public getCharacterByName(name: string): Observable<Character[]>{
+    return this._httpClient.get<Character[]>(`${this.baseUrl}?name=${name}`)
   }
 }
