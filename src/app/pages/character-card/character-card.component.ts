@@ -1,5 +1,6 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, inject } from '@angular/core';
 import { Character } from '../../models/characters-array.model';
+import { FavoriteCharactersService } from '../../services/favorite-characters.service';
 
 @Component({
   selector: 'app-character-card',
@@ -15,17 +16,22 @@ export class CharacterCardComponent implements OnInit {
   @Input() characterData?: Character;
   @Output() favoriteSelected = new EventEmitter<Character>();
 
+  private _favoriteService = inject(FavoriteCharactersService);
+
   ngOnInit(): void {
-      if(window.location.pathname === '/favorites'){
-        this.buttonValue = 'Eliminar de favoritos'
-      }else{
-        this.buttonValue = 'Añadir a favoritos'
-      }
-      
+    this.updateButtonValue()
   }
 
   favoriteButton() {
     this.favoriteSelected.emit(this.characterData);
+    this.updateButtonValue();
+  }
+
+  private updateButtonValue() {
+    if (this.characterData) {
+      const isFavorite = this._favoriteService.getFavorites().some(fav => fav.id === this.characterData!.id);
+      this.buttonValue = isFavorite ? 'Eliminar de favoritos' : 'Añadir a favoritos';
+    }
   }
 
 }

@@ -21,7 +21,12 @@ export class HomeComponent implements OnInit {
   constructor(private _favoriteService: FavoriteCharactersService) {}
 
   onFavoriteSelected(character: Character) {
-    this._favoriteService.addFavorite(character);
+    const isFavorite = this._favoriteService.getFavorites().some(fav => fav.id === character.id);
+    if (isFavorite) {
+      this._favoriteService.removeFavorite(character);
+    } else {
+      this._favoriteService.addFavorite(character);
+    }
   }
 
   ngOnInit(): void {

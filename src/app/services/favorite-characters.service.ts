@@ -16,8 +16,11 @@ export class FavoriteCharactersService {
   favorites$ = this.favoritesSubject.asObservable();
 
   addFavorite(character: Character): void {
-    this.favorites.push(character);
-    this.favoritesSubject.next([...this.favorites]);
+    const exists = this.favorites.some(fav => fav.id === character.id);
+    if (!exists) {
+      this.favorites.push(character);
+      this.favoritesSubject.next([...this.favorites]);
+    }
   }
 
   removeFavorite(character: Character): void {
