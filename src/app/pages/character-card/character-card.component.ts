@@ -1,11 +1,12 @@
 import { Component, Input, EventEmitter, Output, OnInit, inject } from '@angular/core';
 import { Character } from '../../models/characters-array.model';
 import { FavoriteCharactersService } from '../../services/favorite-characters.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-character-card',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './character-card.component.html',
   styleUrl: './character-card.component.css'
 })
